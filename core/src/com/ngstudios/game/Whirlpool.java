@@ -6,7 +6,7 @@ public class Whirlpool extends BaseActor{
     public Whirlpool(float x, float y, Stage s) {
         super(x, y, s);
 
-        loadAnimationFromSheet("whirpool.png", 2, 5, 0.1f, false);
+        loadAnimationFromSheet("whirlpool.png", 2, 5, 0.1f, false);
     }
 
     public void act(float dt){
