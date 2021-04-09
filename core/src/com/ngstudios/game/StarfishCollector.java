@@ -24,6 +24,7 @@ public class StarfishCollector extends GameBeta{
     }
 
     public void update(float dt) {
+        turtle.preventOverlap(rock);
 
         if (turtle.overlaps(starfish) && !starfish.isCollected()){
             starfish.collect();
@@ -41,6 +42,5 @@ public class StarfishCollector extends GameBeta{
 
         }
 
-        turtle.preventOverlap(rock);
     }
 }
