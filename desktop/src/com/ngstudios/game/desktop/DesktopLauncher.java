@@ -12,3 +12,4 @@ public class DesktopLauncher {
 		LwjglApplication launcher = new LwjglApplication(myGame, "StarfishCollector", 800,600);
 	}
 }
+
