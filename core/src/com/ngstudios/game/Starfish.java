@@ -7,7 +7,7 @@ import sun.jvm.hotspot.gc.shared.CollectedHeap;
 
 public class Starfish extends BaseActor{
 
-    private boolean collected;
+    boolean collected;
 
     public Starfish(float x, float y, Stage s) {
         super(x, y, s);
