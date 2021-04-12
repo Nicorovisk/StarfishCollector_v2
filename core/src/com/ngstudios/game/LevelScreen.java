@@ -11,7 +11,7 @@ public class LevelScreen extends BaseScreen{
     private int count;
 
     private final ArrayList<Rock> rocks = new ArrayList<>();
-    private final ArrayList<Starfish> starfishs = new ArrayList<>();
+    private final ArrayList<Starfish> starfishes = new ArrayList<>();
 
     public void initialize() {
 
@@ -21,16 +21,16 @@ public class LevelScreen extends BaseScreen{
         BaseActor.setWorldBounds(ocean);
 
         Starfish s1 = new Starfish(400, 400, mainStage);
-        starfishs.add(s1);
+        starfishes.add(s1);
         count++;
         Starfish s2 = new Starfish(500, 100, mainStage);
-        starfishs.add(s2);
+        starfishes.add(s2);
         count++;
         Starfish s3 = new Starfish(100, 450, mainStage);
-        starfishs.add(s3);
+        starfishes.add(s3);
         count++;
         Starfish s4 = new Starfish(200, 250, mainStage);
-        starfishs.add(s4);
+        starfishes.add(s4);
         count++;
 
         Rock r1 = new Rock(200, 150, mainStage);
@@ -52,7 +52,7 @@ public class LevelScreen extends BaseScreen{
             turtle.preventOverlap(rock);
         }
 
-        for(Starfish starfish : starfishs){
+        for(Starfish starfish : starfishes){
             if (turtle.overlaps(starfish) && !starfish.isCollected()){
                 starfish.collect();
                 Whirlpool whirl = new Whirlpool(0,0,mainStage);
