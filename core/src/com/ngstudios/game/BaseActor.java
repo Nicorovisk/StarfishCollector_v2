@@ -14,9 +14,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Intersector.MinimumTranslationVector;
-import com.badlogic.gdx.utils.compression.lzma.Base;
-
-import java.util.ArrayList;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class BaseActor extends Actor {
 
@@ -31,6 +31,8 @@ public class BaseActor extends Actor {
     private float deceleration;
 
     private Polygon boundaryPolygon;
+
+    private static Rectangle worldBounds;
 
     public BaseActor(float x, float y, Stage s){
 
@@ -324,29 +326,52 @@ public class BaseActor extends Actor {
         return mtv.normal;
     }
 
-    //lists of objects
-    public static ArrayList<BaseActor> getList(Stage stage, String className){
-        ArrayList<BaseActor> list = new ArrayList<>();
+    // World Bounds
 
-        Class theClass = null;
-
-        try{
-            theClass = Class.forName(className);
-        }
-        catch (Exception error){
-            error.printStackTrace();
-        }
-
-        for (Actor a : stage.getActors()){
-            if (theClass.isInstance(a)){
-                list.add((BaseActor)a);
-            }
-        }
-        return list;
+    public static void setWorldBounds(float width, float height){
+        worldBounds = new Rectangle(0,0, width, height);
     }
 
-    public static int count(Stage stage, String className){
-        return getList(stage, className).size();
+    public static void setWorldBounds(BaseActor baseActor){
+        setWorldBounds(baseActor.getWidth(), baseActor.getHeight());
     }
 
+    public void boundToWorld(){
+        // check left edge
+        if(getX() < 0){
+            setX(0);
+        }
+        // check right edge
+        if(getX() + getWidth() > worldBounds.width){
+            setX(worldBounds.width - getWidth());
+        }
+
+        // check bottom edge
+        if(getY() < 0){
+            setY(0);
+        }
+
+        // check top edge
+        if(getY() + getHeight() > worldBounds.height){
+            setY(worldBounds.height - getHeight());
+        }
+
+    }
+
+    // Camera
+
+    public void alignCamera(){
+        Camera cam = this.getStage().getCamera();
+        Viewport v = this.getStage().getViewport();
+
+        // center camera on actor
+        cam.position.set(this.getX() + this.getOriginX(), this.getY() + this.getOriginY(), 0);
+
+        // bound camera to layout
+        cam.position.x = MathUtils.clamp(cam.position.x, cam.viewportWidth/2,
+                worldBounds.width - cam.viewportWidth/2);
+        cam.position.y = MathUtils.clamp(cam.position.y, cam.viewportHeight/2,
+                worldBounds.height - cam.viewportHeight);
+        cam.update();
+    }
 }

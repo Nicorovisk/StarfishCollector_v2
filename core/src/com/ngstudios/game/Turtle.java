@@ -8,7 +8,7 @@ public class Turtle extends BaseActor{
     public Turtle(float x, float y, Stage s) {
         super(x, y, s);
         setAcceleration(400);
-        setMaxSpeed(100);
+        setMaxSpeed(200);
         setDeceleration(400);
 
         String[] fileNames = {"turtle-1.png", "turtle-2.png", "turtle-3.png",
@@ -42,5 +42,9 @@ public class Turtle extends BaseActor{
         if(getSpeed() > 0){
             setRotation(getMotionAngle());
         }
+
+        boundToWorld();
+
+        alignCamera();
     }
 }

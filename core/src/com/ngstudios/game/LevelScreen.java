@@ -4,24 +4,14 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 import java.util.ArrayList;
 
-public class StarfishCollector extends GameBeta{
+public class LevelScreen extends BaseScreen{
 
     private Turtle turtle;
     private boolean win;
     private int count;
 
-    private Starfish s1;
-    private Starfish s2;
-    private Starfish s3;
-    private Starfish s4;
-
-    private Rock r1;
-    private Rock r2;
-    private Rock r3;
-    private Rock r4;
-
-    private ArrayList<Rock> rocks = new ArrayList<>();
-    private ArrayList<Starfish> starfishs = new ArrayList<>();
+    private final ArrayList<Rock> rocks = new ArrayList<>();
+    private final ArrayList<Starfish> starfishs = new ArrayList<>();
 
     public void initialize() {
 
@@ -30,26 +20,26 @@ public class StarfishCollector extends GameBeta{
         ocean.setSize(1200, 900);
         BaseActor.setWorldBounds(ocean);
 
-        s1 = new Starfish(400,400, mainStage);
+        Starfish s1 = new Starfish(400, 400, mainStage);
         starfishs.add(s1);
         count++;
-        s2 = new Starfish(500,100, mainStage);
+        Starfish s2 = new Starfish(500, 100, mainStage);
         starfishs.add(s2);
         count++;
-        s3 = new Starfish(100,450, mainStage);
+        Starfish s3 = new Starfish(100, 450, mainStage);
         starfishs.add(s3);
         count++;
-        s4 = new Starfish(200,250, mainStage);
+        Starfish s4 = new Starfish(200, 250, mainStage);
         starfishs.add(s4);
         count++;
 
-        r1 = new Rock(200,150, mainStage);
+        Rock r1 = new Rock(200, 150, mainStage);
         rocks.add(r1);
-        r2 = new Rock(100,300, mainStage);
+        Rock r2 = new Rock(100, 300, mainStage);
         rocks.add(r2);
-        r3 = new Rock(300,350, mainStage);
+        Rock r3 = new Rock(300, 350, mainStage);
         rocks.add(r3);
-        r4 = new Rock(450,200, mainStage);
+        Rock r4 = new Rock(450, 200, mainStage);
         rocks.add(r4);
 
         turtle = new Turtle(20,20,mainStage);
